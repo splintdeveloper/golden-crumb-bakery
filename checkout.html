@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout – Golden Crumb Bakery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <span class="logo-icon">🍞</span>
+      <span class="logo-text">Golden Crumb Bakery</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="order.html">Order Online</a>
+    </nav>
+  </header>
+
+  <section>
+    <div class="checkout-page">
+      <h2>Checkout</h2>
+      <div class="checkout-layout">
+
+        <!-- Left: form -->
+        <div class="checkout-form-panel">
+
+          <!-- Step indicator -->
+          <div class="steps">
+            <div class="step active" id="step-tab-1">1. Contact</div>
+            <div class="step" id="step-tab-2">2. Shipping</div>
+            <div class="step" id="step-tab-3">3. Payment</div>
+            <div class="step" id="step-tab-4">4. Confirm</div>
+          </div>
+
+          <!-- Step 1: Contact -->
+          <div class="form-section active" id="step-1">
+            <h3>Contact Information</h3>
+            <div class="field-row">
+              <div class="field">
+                <label>First Name</label>
+                <input type="text" id="first-name" placeholder="Clara" />
+              </div>
+              <div class="field">
+                <label>Last Name</label>
+                <input type="text" id="last-name" placeholder="Whitfield" />
+              </div>
+            </div>
+            <div class="field-row full">
+              <div class="field">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" />
+              </div>
+            </div>
+            <div class="field-row full">
+              <div class="field">
+                <label>Phone Number</label>
+                <input type="tel" id="phone" placeholder="(555) 000-0000" />
+              </div>
+            </div>
+            <div class="form-nav">
+              <a href="order.html" class="btn btn-outline">← Back to Cart</a>
+              <button class="btn" onclick="goToStep(2)">Continue →</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Shipping -->
+          <div class="form-section" id="step-2">
+            <h3>Shipping / Pickup</h3>
+            <div class="field-row full">
+              <div class="field">
+                <label>Fulfillment Method</label>
+                <select id="fulfillment">
+                  <option value="pickup">In-Store Pickup (Free)</option>
+                  <option value="delivery">Local Delivery (+$5.00)</option>
+                </select>
+              </div>
+            </div>
+            <div id="address-fields">
+              <div class="field-row full">
+                <div class="field">
+                  <label>Street Address</label>
+                  <input type="text" id="address" placeholder="123 Main St" />
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label>City</label>
+                  <input type="text" id="city" placeholder="Doughville" />
+                </div>
+                <div class="field">
+                  <label>State</label>
+                  <input type="text" id="state" placeholder="CA" />
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label>ZIP Code</label>
+                  <input type="text" id="zip" placeholder="90210" />
+                </div>
+                <div class="field">
+                  <label>Country</label>
+                  <input type="text" id="country" value="United States" />
+                </div>
+              </div>
+            </div>
+            <div class="field-row full">
+              <div class="field">
+                <label>Pickup / Delivery Date</label>
+                <input type="date" id="pickup-date" />
+              </div>
+            </div>
+            <div class="field-row full">
+              <div class="field">
+                <label>Notes (optional)</label>
+                <input type="text" id="notes" placeholder="Allergies, special requests…" />
+              </div>
+            </div>
+            <div class="form-nav">
+              <button class="btn btn-outline" onclick="goToStep(1)">← Back</button>
+              <button class="btn" onclick="goToStep(3)">Continue →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Payment -->
+          <div class="form-section" id="step-3">
+            <h3>Payment Details</h3>
+            <div class="field-row full">
+              <div class="field">
+                <label>Name on Card</label>
+                <input type="text" id="card-name" placeholder="Clara Whitfield" />
+              </div>
+            </div>
+            <div class="field-row full">
+              <div class="field">
+                <label>Card Number</label>
+                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)" />
+              </div>
+            </div>
+            <div class="card-row">
+              <div class="field">
+                <label>Expiry Date</label>
+                <input type="text" id="card-expiry" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)" />
+              </div>
+              <div class="field">
+                <label>CVV</label>
+                <input type="text" id="card-cvv" placeholder="123" maxlength="4" />
+              </div>
+            </div>
+            <p style="font-size:.8rem;color:var(--muted);font-family:sans-serif;margin-top:.5rem;">
+              🔒 This is a demo — no real charge will occur.
+            </p>
+            <div class="form-nav">
+              <button class="btn btn-outline" onclick="goToStep(2)">← Back</button>
+              <button class="btn" id="place-order-btn" onclick="placeOrder()">Place Order</button>
+            </div>
+          </div>
+
+          <!-- Step 4: Confirmation -->
+          <div class="form-section" id="step-4">
+            <div class="confirm-box">
+              <div class="confirm-icon">🎉</div>
+              <h3>Order Placed!</h3>
+              <p>Thank you for your order. We'll have everything ready for you.</p>
+              <p style="margin-top:.8rem;">Order number: <span class="order-number" id="order-number"></span></p>
+              <p style="margin-top:.5rem;font-size:.88rem;">A confirmation has been sent to <strong id="confirm-email"></strong></p>
+              <a href="index.html" class="btn" style="margin-top:1.5rem;">Back to Home</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: order summary -->
+        <div class="summary-panel">
+          <h3>Order Summary</h3>
+          <div id="summary-items"></div>
+          <div class="summary-subtotal">
+            <span>Subtotal</span><span id="summary-subtotal">$0.00</span>
+          </div>
+          <div class="summary-tax" id="delivery-row" style="display:none;">
+            <span>Delivery</span><span>$5.00</span>
+          </div>
+          <div class="summary-tax">
+            <span>Tax (8%)</span><span id="summary-tax">$0.00</span>
+          </div>
+          <div class="summary-total">
+            <span>Total</span><span id="summary-grand">$0.00</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2025 Golden Crumb Bakery &nbsp;|&nbsp; 42 Flour Street, Doughville &nbsp;|&nbsp; (555) 012-3456</p>
+    </div>
+  </footer>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js"></script>
+
+  <!-- Fill in your Firebase config here -->
+  <script src="config.js"></script>
+
+  <script src="cart.js"></script>
+  <script>
+    let currentStep = 1;
+    let delivery = false;
+
+    // Populate summary on load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSummary();
+      // Set min pickup date to tomorrow
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      document.getElementById('pickup-date').min = tomorrow.toISOString().split('T')[0];
+      document.getElementById('pickup-date').value = tomorrow.toISOString().split('T')[0];
+
+      // Toggle address fields based on fulfillment
+      document.getElementById('fulfillment').addEventListener('change', function() {
+        delivery = this.value === 'delivery';
+        document.getElementById('address-fields').style.display = delivery ? 'block' : 'none';
+        document.getElementById('delivery-row').style.display = delivery ? 'flex' : 'none';
+        renderSummary();
+      });
+      // Hide address fields initially (pickup default)
+      document.getElementById('address-fields').style.display = 'none';
+    });
+
+    function renderSummary() {
+      const cart = getCart();
+      const itemsEl = document.getElementById('summary-items');
+      const subtotalEl = document.getElementById('summary-subtotal');
+      const taxEl = document.getElementById('summary-tax');
+      const grandEl = document.getElementById('summary-grand');
+
+      if (cart.length === 0) {
+        itemsEl.innerHTML = '<p style="color:var(--muted);font-size:.88rem;">Cart is empty.</p>';
+        return;
+      }
+
+      itemsEl.innerHTML = cart.map(i =>
+        `<div class="summary-item"><span>${i.name} × ${i.qty}</span><span>$${(i.price * i.qty).toFixed(2)}</span></div>`
+      ).join('');
+
+      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const deliveryFee = delivery ? 5 : 0;
+      const tax = (subtotal + deliveryFee) * 0.08;
+      const grand = subtotal + deliveryFee + tax;
+
+      subtotalEl.textContent = '$' + subtotal.toFixed(2);
+      taxEl.textContent = '$' + tax.toFixed(2);
+      grandEl.textContent = '$' + grand.toFixed(2);
+    }
+
+    function goToStep(n) {
+      // Basic validation before advancing
+      if (n > currentStep) {
+        if (currentStep === 1) {
+          if (!document.getElementById('first-name').value.trim() ||
+              !document.getElementById('email').value.trim()) {
+            alert('Please fill in your name and email.');
+            return;
+          }
+        }
+        if (currentStep === 3) { return; } // place order handles step 3 → 4
+      }
+
+      document.getElementById('step-' + currentStep).classList.remove('active');
+      document.getElementById('step-tab-' + currentStep).classList.remove('active');
+      document.getElementById('step-tab-' + currentStep).classList.add('done');
+
+      currentStep = n;
+      document.getElementById('step-' + currentStep).classList.add('active');
+      document.getElementById('step-tab-' + currentStep).classList.remove('done');
+      document.getElementById('step-tab-' + currentStep).classList.add('active');
+    }
+
+    async function placeOrder() {
+      const btn = document.getElementById('place-order-btn');
+      const cardNum = document.getElementById('card-number').value.trim();
+      const cardExp = document.getElementById('card-expiry').value.trim();
+      const cardCvv = document.getElementById('card-cvv').value.trim();
+
+      if (!cardNum || !cardExp || !cardCvv) {
+        alert('Please fill in your card details.');
+        return;
+      }
+
+      btn.textContent = 'Processing…';
+      btn.disabled = true;
+
+      const cart = getCart();
+      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const deliveryFee = delivery ? 5 : 0;
+      const tax = (subtotal + deliveryFee) * 0.08;
+
+      const order = {
+        customerName: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        fulfillment: document.getElementById('fulfillment').value,
+        pickupDate: document.getElementById('pickup-date').value,
+        notes: document.getElementById('notes').value,
+        items: cart,
+        subtotal: subtotal.toFixed(2),
+        deliveryFee: deliveryFee.toFixed(2),
+        tax: tax.toFixed(2),
+        total: (subtotal + deliveryFee + tax).toFixed(2),
+        createdAt: new Date().toISOString(),
+        orderNumber: 'GCB-' + Date.now().toString().slice(-6),
+      };
+
+      try {
+        // Save to Firestore
+        await db.collection('orders').add(order);
+
+        // Trigger Cloud Function to send email
+        const sendOrderEmail = functions.httpsCallable('sendOrderEmail');
+        await sendOrderEmail(order);
+
+      } catch (err) {
+        console.error('Order error:', err);
+        // Still show confirmation even if backend fails (demo site)
+      }
+
+      // Clear cart and show confirmation
+      saveCart([]);
+      document.getElementById('order-number').textContent = order.orderNumber;
+      document.getElementById('confirm-email').textContent = order.email;
+
+      // Move to step 4
+      document.getElementById('step-' + currentStep).classList.remove('active');
+      document.getElementById('step-tab-' + currentStep).classList.add('done');
+      document.getElementById('step-tab-' + currentStep).classList.remove('active');
+      currentStep = 4;
+      document.getElementById('step-4').classList.add('active');
+      document.getElementById('step-tab-4').classList.add('active');
+    }
+
+    function formatCard(input) {
+      let v = input.value.replace(/\D/g, '').substring(0, 16);
+      input.value = v.replace(/(.{4})/g, '$1 ').trim();
+    }
+
+    function formatExpiry(input) {
+      let v = input.value.replace(/\D/g, '').substring(0, 4);
+      if (v.length >= 3) v = v.substring(0,2) + ' / ' + v.substring(2);
+      input.value = v;
+    }
+  </script>
+</body>
+</html>

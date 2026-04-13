@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Online – Golden Crumb Bakery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <span class="logo-icon">🍞</span>
+      <span class="logo-text">Golden Crumb Bakery</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="order.html" class="active">Order Online</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Order Online</h2>
+    <div class="order-layout">
+
+      <!-- Product list -->
+      <div class="product-grid" style="align-content:start;">
+
+        <div class="product-card">
+          <div class="product-img" style="background:#f9e4b7;">🥐</div>
+          <div class="product-info">
+            <h3>Butter Croissant</h3>
+            <p>Flaky, golden layers.</p>
+            <span class="price">$3.50</span>
+            <button class="btn-sm" onclick="addToCart('Butter Croissant', 3.50)">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img" style="background:#e8d5c4;">🍞</div>
+          <div class="product-info">
+            <h3>Sourdough Loaf</h3>
+            <p>Crispy crust, chewy interior.</p>
+            <span class="price">$9.00</span>
+            <button class="btn-sm" onclick="addToCart('Sourdough Loaf', 9.00)">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img" style="background:#fde8e8;">🎂</div>
+          <div class="product-info">
+            <h3>Strawberry Cake</h3>
+            <p>Vanilla sponge, strawberry cream.</p>
+            <span class="price">$32.00</span>
+            <button class="btn-sm" onclick="addToCart('Strawberry Cake', 32.00)">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img" style="background:#d4edda;">🧁</div>
+          <div class="product-info">
+            <h3>Matcha Cupcake</h3>
+            <p>Matcha cake, white choc frosting.</p>
+            <span class="price">$4.25</span>
+            <button class="btn-sm" onclick="addToCart('Matcha Cupcake', 4.25)">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img" style="background:#f5deb3;">🥖</div>
+          <div class="product-info">
+            <h3>Baguette</h3>
+            <p>Classic French style.</p>
+            <span class="price">$4.50</span>
+            <button class="btn-sm" onclick="addToCart('Baguette', 4.50)">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img" style="background:#e8c99a;">🍪</div>
+          <div class="product-info">
+            <h3>Choc Chip Cookie</h3>
+            <p>Brown butter, sea salt.</p>
+            <span class="price">$2.75</span>
+            <button class="btn-sm" onclick="addToCart('Choc Chip Cookie', 2.75)">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img" style="background:#ffd9d9;">🥐</div>
+          <div class="product-info">
+            <h3>Pain au Chocolat</h3>
+            <p>Dark chocolate batons.</p>
+            <span class="price">$4.00</span>
+            <button class="btn-sm" onclick="addToCart('Pain au Chocolat', 4.00)">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img" style="background:#4a2c0a; color:#fff;">🍫</div>
+          <div class="product-info">
+            <h3>Brownie</h3>
+            <p>Fudgy dark chocolate.</p>
+            <span class="price">$3.25</span>
+            <button class="btn-sm" onclick="addToCart('Brownie', 3.25)">Add to Cart</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Cart panel -->
+      <div class="cart-panel">
+        <h3>Your Cart</h3>
+        <div id="cart-items">
+          <p style="color:var(--muted);font-size:.9rem;">No items yet.</p>
+        </div>
+        <div class="cart-total" id="cart-total" style="display:none;">
+          Total: $<span id="total-amount">0.00</span>
+        </div>
+        <button class="btn" id="checkout-btn" style="display:none;" onclick="window.location.href='checkout.html'">Checkout</button>
+        <button class="btn btn-outline" id="clear-btn" style="display:none;margin-top:.4rem;width:100%;" onclick="clearCart()">Clear Cart</button>
+        <p id="order-confirm" style="display:none;color:#155724;background:#d4edda;padding:.7rem;border-radius:8px;font-size:.88rem;margin-top:1rem;font-family:sans-serif;">
+          Order placed! We'll have it ready for pickup. 🎉
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2025 Golden Crumb Bakery &nbsp;|&nbsp; 42 Flour Street, Doughville &nbsp;|&nbsp; (555) 012-3456</p>
+    </div>
+  </footer>
+
+  <div id="cart-toast" class="cart-toast hidden"></div>
+  <script src="cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Golden Crumb Bakery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <span class="logo-icon">🍞</span>
+      <span class="logo-text">Golden Crumb Bakery</span>
+    </div>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="order.html">Order Online</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Freshly Baked,<br/>Every Morning</h1>
+      <p>Artisan breads, pastries, and cakes made with love in the heart of your neighborhood.</p>
+      <a href="menu.html" class="btn">See Our Menu</a>
+      <a href="order.html" class="btn btn-outline">Order Now</a>
+    </div>
+  </section>
+
+  <section class="featured">
+    <h2>Today's Favorites</h2>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-img" style="background:#f9e4b7;">🥐</div>
+        <div class="product-info">
+          <h3>Butter Croissant</h3>
+          <p>Flaky, golden layers with rich European-style butter.</p>
+          <span class="price">$3.50</span>
+          <button class="btn-sm" onclick="addToCart('Butter Croissant', 3.50)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:#e8d5c4;">🍞</div>
+        <div class="product-info">
+          <h3>Sourdough Loaf</h3>
+          <p>Long-fermented, crispy crust, chewy interior.</p>
+          <span class="price">$9.00</span>
+          <button class="btn-sm" onclick="addToCart('Sourdough Loaf', 9.00)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:#fde8e8;">🎂</div>
+        <div class="product-info">
+          <h3>Strawberry Cake</h3>
+          <p>Light vanilla sponge layered with fresh strawberry cream.</p>
+          <span class="price">$32.00</span>
+          <button class="btn-sm" onclick="addToCart('Strawberry Cake', 32.00)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:#d4edda;">🧁</div>
+        <div class="product-info">
+          <h3>Matcha Cupcake</h3>
+          <p>Earthy matcha cake topped with white chocolate frosting.</p>
+          <span class="price">$4.25</span>
+          <button class="btn-sm" onclick="addToCart('Matcha Cupcake', 4.25)">Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="see-all">
+      <a href="menu.html" class="btn">View Full Menu</a>
+    </div>
+  </section>
+
+  <section class="banner">
+    <div class="banner-inner">
+      <h2>Baked Fresh Daily at 5 AM</h2>
+      <p>We never use preservatives. What you taste is what we made this morning.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2025 Golden Crumb Bakery &nbsp;|&nbsp; 42 Flour Street, Doughville &nbsp;|&nbsp; (555) 012-3456</p>
+    </div>
+  </footer>
+
+  <div id="cart-toast" class="cart-toast hidden"></div>
+  <script src="cart.js"></script>
+</body>
+</html>
