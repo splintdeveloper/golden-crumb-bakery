@@ -150,6 +150,6 @@ router.delete('/orders/:id', (req, res) => {
 app.use('/api', router);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Golden Crumb API running at http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Golden Crumb API running on port ${PORT}`);
 });
